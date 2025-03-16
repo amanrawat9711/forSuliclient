@@ -63,7 +63,7 @@ const ImageSlider = () => {
   transition={{ duration: 4, repeat: Infinity, ease: "linear" }} // Infinite loop
 >
   I love you, my everything. I can't imagine life without you. ❤️
-</motion.h1>
+</motion.h1> 
     <div className="w-full max-w-4xl mx-auto px-4">
       <Slider {...settings}>
         {images.reverse().map((img, index) => (
