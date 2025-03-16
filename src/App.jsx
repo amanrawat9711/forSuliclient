@@ -1,4 +1,4 @@
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -10,6 +10,7 @@ import Message from "./pages/Message";
 
 function App() {
   const [authKey, setAuthKey] = useState(localStorage.getItem("authKey"));
+  const location = useLocation(); // Get current route
 
   useEffect(() => {
     const handleAuthChange = () => {
@@ -28,11 +29,11 @@ function App() {
 
   return (
     <div className="m-1">
+      {/* Hide Navbar when on /login */}
+      {location.pathname !== "/login" && <Navbar />}
+
       <Routes>
-      <Route path="/login" element={<Login />} />
-      </Routes>
-      <Navbar />
-      <Routes>
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<PrivateRoute element={<Home />} />} />
         <Route path="/add" element={<PrivateRoute element={<Add />} />} />
         <Route path="/show" element={<PrivateRoute element={<Show />} />} />
